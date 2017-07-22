@@ -29,6 +29,7 @@ $ composer install
         // create the algorithm and supply the formula parameters
         $algorithm = new LinearCongruentialGenerator($formula);
         
+        // set algorithm
         $randomizer = new PsuedoRandomizer($algorithm);
             
         // generate random number!
