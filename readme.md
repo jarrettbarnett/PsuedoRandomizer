@@ -10,11 +10,11 @@ $ composer install
         use PsuedoRandomizer\PsuedoRandomizer;
         use PsuedoRandomizer\Algorithms\MersenneTwister;
         
-        $randomizer = (new PsuedoRandomizer(new MersenneTwister));
+        $randomizer = new PsuedoRandomizer(new MersenneTwister);
         
         // generate random number!
         $randomizer->random();
-        
+
 #### Using A Different Algorithm
 
     <?php
@@ -29,7 +29,7 @@ $ composer install
         // create the algorithm and supply the formula parameters
         $algorithm = new LinearCongruentialGenerator($formula);
         
-        $randomizer = (new PsuedoRandomizer($algorithm));
+        $randomizer = new PsuedoRandomizer($algorithm);
             
         // generate random number!
         $randomizer->random();
@@ -51,10 +51,10 @@ $ composer install
         use PsuedoRandomizer\Formulas\LinearCongruential\NumericalRecipes;
         
         // create the algorithm and supply the formula parameters
-        $algorithm = new LinearCongruentialGenerator(new NumericalRecipes());
+        $algorithm = new LinearCongruentialGenerator(new NumericalRecipes);
         
         // provider randomizer with the algorithm
-        $randomizer = (new PsuedoRandomizer($algorithm));
+        $randomizer = new PsuedoRandomizer($algorithm);
         
         // generate random number!
         $randomizer->random();
@@ -68,3 +68,16 @@ Following the previous example, you only need to add the namespace and swap the 
         
         // create the algorithm and supply the formula parameters
         $algorithm = new LinearCongruentialGenerator(new Borland());
+        
+#### One-liner
+
+    <?php
+        use PsuedoRandomizer\PsuedoRandomizer;
+        use PsuedoRandomizer\Algorithms\LinearCongruentialGenerator;
+        use PsuedoRandomizer\Formulas\LinearCongruential\NumericalRecipes;
+        
+        // too much? maybe...
+        $randomizer = new PsuedoRandomizer(new LinearCongruentialGenerator(new NumericalRecipes));
+        
+        // generate random number!
+        $randomizer->random();
