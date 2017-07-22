@@ -30,7 +30,7 @@ $seed = (int) $seed;
 // setup the randomizer with Numerical Recipes values for LinearCongruentialGenerator class
 $algorithm = new LinearCongruentialGenerator(new NumericalRecipes());
 $algorithm->setSeed($seed)
-          ->setRandLambda($dice)
+          ->setRandClosure($dice)
           ->setStartRange(1)
           ->setEndRange(100);
 $psuedoRandomizer = (new PsuedoRandomizer($algorithm));
