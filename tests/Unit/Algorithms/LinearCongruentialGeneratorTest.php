@@ -36,7 +36,7 @@ class LinearCongruentialGeneratorTest extends TestCase
     
         $this->assertNotEmpty($results);
     
-        // let's check the deviation
+        // let's check for uniform distribution
         $sum  = array_sum($results);
         $mean = $sum / count($results);
     
