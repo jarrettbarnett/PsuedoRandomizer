@@ -1,11 +1,10 @@
 <?php namespace PsuedoRandomizer;
 
 use PHPUnit\Framework\TestCase;
+use PsuedoRandomizer\Algorithms\MersenneTwister;
 use PsuedoRandomizer\PsuedoRandomizer;
-use PsuedoRandomizer\Formulas\LinearCongruential\NumericalRecipes;
-use PsuedoRandomizer\Algorithms\LinearCongruentialGenerator;
 
-class LinearCongruentialGeneratorTest extends TestCase
+class MersenneTwisterTest extends TestCase
 {
     var $algorithm;
 
@@ -15,7 +14,7 @@ class LinearCongruentialGeneratorTest extends TestCase
     public function setUp()
     {
         // setup Randomizer
-        $this->algorithm = new LinearCongruentialGenerator(new NumericalRecipes());
+        $this->algorithm = new MersenneTwister();
     }
 
     /** @test  */
@@ -24,13 +23,12 @@ class LinearCongruentialGeneratorTest extends TestCase
         $results = [];
     
         $this->algorithm
-            ->setSeed(1234567890)
             ->setStartRange(1)
             ->setEndRange(100);
     
-        $randomizer = new PsuedoRandomizer( $this->algorithm );
+        $randomizer = new PsuedoRandomizer($this->algorithm);
     
-        for ($i = 1; $i <= 10000; $i ++) {
+        for ($i = 1; $i <= 100; $i ++) {
             $results[] = $randomizer->random();
         }
     
@@ -39,20 +37,9 @@ class LinearCongruentialGeneratorTest extends TestCase
         // let's check for uniform distribution
         $sum  = array_sum($results);
         $mean = $sum / count($results);
-
+    
         $this->assertLessThan( 60, $mean, 'Average of random numbers above the average!' );
         $this->assertGreaterThan( 40, $mean, 'Average of random numbers below the average!' );
-
-        $breakdown = array_count_values($results);
-        arsort($breakdown);
-
-        $occurance_sums = [];
-        foreach ($breakdown as $int => $occurances) {
-            $occurance_sums[$int] = $occurances;
-        }
-
-        // ensure we receive numbers across the entire range
-        $this->assertCount(100, array_keys($occurance_sums));
     }
     
     /** @test */
