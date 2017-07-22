@@ -102,5 +102,13 @@ function test_big_dice($test_limit = 100000)
     }
 }
 
+function get_results_as_excel($limit = 100000)
+{
+    for ($i = 0; $i < $limit; $i++) {
+        $big_dice_rolls[] = big_dice();
+    }
+
+    echo implode(PHP_EOL, $big_dice_rolls);
+}
 
 test_big_dice();
