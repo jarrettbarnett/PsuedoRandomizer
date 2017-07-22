@@ -35,8 +35,6 @@ $algorithm->setSeed($seed)
           ->setEndRange(100);
 $psuedoRandomizer = (new PsuedoRandomizer($algorithm));
 
-// setup the randomizer with Borland values for LinearCongruentialGenerator class
-
 // example usage
 // $psuedoRandomizer->random();
 
