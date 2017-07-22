@@ -24,23 +24,40 @@ class LinearCongruentialGeneratorTest extends TestCase
         $results = [];
     
         $this->algorithm
-            ->setSeed( 1234567890 )
-            ->setStartRange( 1 )
-            ->setEndRange( 100 );
+            ->setSeed(1234567890)
+            ->setStartRange(1)
+            ->setEndRange(100);
     
         $randomizer = new PsuedoRandomizer( $this->algorithm );
     
-        for ( $i = 1; $i <= 100; $i ++ ) {
+        for ($i = 1; $i <= 100; $i ++) {
             $results[] = $randomizer->random();
         }
     
-        $this->assertNotEmpty( $results );
+        $this->assertNotEmpty($results);
     
         // let's check the deviation
-        $sum  = array_sum( $results );
-        $mean = $sum / count( $results );
+        $sum  = array_sum($results);
+        $mean = $sum / count($results);
     
         $this->assertLessThan( 60, $mean, 'Average of random numbers above the average!' );
         $this->assertGreaterThan( 40, $mean, 'Average of random numbers below the average!' );
+    }
+    
+    /** @test */
+    public function always_receive_a_return_number()
+    {
+        $this->algorithm
+            ->setSeed(56791252)
+            ->setStartRange(1)
+            ->setEndRange(1000);
+    
+        $randomizer = new PsuedoRandomizer( $this->algorithm );
+    
+        for ($i = 1; $i <= 1000; $i++) {
+            $results[] = $randomizer->random();
+        }
+    
+        $this->assertEquals(1000, count($results), 'Randomizer failed to return required number of random numbers!');
     }
 }
