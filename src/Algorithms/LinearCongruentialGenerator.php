@@ -53,10 +53,15 @@ class LinearCongruentialGenerator extends AbstractAlgorithm implements Algorithm
     {
         if (empty($this->seed))
         {
-            while (strlen($this->seed) < 9)
+            if (is_callable([$this, 'rand']))
             {
-                $this->seed .= $this->rand();
+                while (strlen($this->seed) < 9)
+                {
+                    $this->seed .= $this->rand();
+                }
             }
+
+            $this->seed = mt_rand(100000000, 999999999);
         }
         
         return $this->seed;
