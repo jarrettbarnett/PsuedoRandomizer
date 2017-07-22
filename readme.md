@@ -1,4 +1,4 @@
-# PsuedoNumber Generator
+# Psuedo Random Number Generator
 
 ## Setup
 
