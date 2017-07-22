@@ -4,6 +4,11 @@ use PsuedoRandomizer\Algorithms\AbstractAlgorithm;
 use PsuedoRandomizer\Algorithms\AlgorithmInterface;
 use PsuedoRandomizer\Formulas\LinearCongruentialGeneratorFormulaInterface;
 
+/**
+ * Class LinearCongruentialGenerator
+ * @package PsuedoRandomizer\Algorithms
+ * @see https://en.wikipedia.org/wiki/Linear_congruential_generator
+ */
 class LinearCongruentialGenerator extends AbstractAlgorithm implements AlgorithmInterface
 {
     /**
